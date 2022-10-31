@@ -38,9 +38,7 @@ local function decode64(data)
 end
 
 local function getFileFromRepo(file)
-    local res = http.get(REPO_FULL..file, {
-        ["Authorization"] = "token "..GITHUB_ACCESS_TOKEN,
-    })
+    local res = http.get(REPO_FULL..file)
     if res == nil then return nil end
     local body = textutils.unserialiseJSON(res.readAll())
     local content = body["content"]
